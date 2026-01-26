@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazzei for Governor - Campaign Performance Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #8892b0;
+            margin-bottom: 8px;
+        }
+
+        .header .date-range {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #ccd6f6;
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-stat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-stat .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .hero-stat .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-stat:nth-child(2) {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            box-shadow: 0 10px 40px rgba(17, 153, 142, 0.3);
+        }
+
+        .hero-stat:nth-child(3) {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            box-shadow: 0 10px 40px rgba(235, 51, 73, 0.3);
+        }
+
+        .hero-stat:nth-child(4) {
+            background: linear-gradient(135deg, #4568dc 0%, #b06ab3 100%);
+            box-shadow: 0 10px 40px rgba(69, 104, 220, 0.3);
+        }
+
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        /* Wins Section */
+        .wins .section-icon {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .win-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .win-card {
+            background: linear-gradient(135deg, #f8fff8 0%, #e8f5e9 100%);
+            border-left: 4px solid #38ef7d;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .win-card h3 {
+            color: #11998e;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .win-card h3::before {
+            content: "✓";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #11998e;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .win-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .win-card .metric {
+            display: inline-block;
+            background: #11998e;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* Considerations Section */
+        .considerations .section-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .consideration-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .consideration-item {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff3e0 100%);
+            border-left: 4px solid #ff9800;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .consideration-item h3 {
+            color: #e65100;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .consideration-item h3::before {
+            content: "!";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #ff9800;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .consideration-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Performance Highlights */
+        .highlights .section-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .highlight-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: #f8f9ff;
+            border-radius: 16px;
+            border: 2px solid #e8ebff;
+        }
+
+        .highlight-card .big-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #667eea;
+            display: block;
+        }
+
+        .highlight-card .comparison {
+            font-size: 0.85rem;
+            color: #11998e;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .highlight-card .description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Top Content */
+        .top-content .section-icon {
+            background: linear-gradient(135deg, #4568dc 0%, #b06ab3 100%);
+        }
+
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .content-table th {
+            background: #f8f9ff;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #1a1a2e;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .content-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .content-table tr:hover {
+            background: #fafafa;
+        }
+
+        .content-table .theme {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-info {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        /* Geographic Reach */
+        .geo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .geo-list {
+            list-style: none;
+        }
+
+        .geo-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .geo-list .city {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .geo-list .count {
+            background: #667eea;
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .geo-bar-container {
+            flex: 1;
+            margin: 0 15px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .geo-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        /* Channel Mix */
+        .channel-mix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .channel-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f8f9ff;
+        }
+
+        .channel-card .channel-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .channel-card .channel-sessions {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .channel-card .channel-percent {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8892b0;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .win-grid,
+            .consideration-list,
+            .highlight-grid,
+            .geo-section {
+                grid-template-columns: 1fr;
+            }
+
+            .channel-mix {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Mazzei for Governor</h1>
+            <p class="subtitle">Campaign Performance Executive Summary</p>
+            <span class="date-range">October 1, 2025 - January 18, 2026</span>
+        </header>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="number">4.08M</span>
+                <span class="label">Total Impressions</span>
+            </div>
+            <div class="hero-stat">
+                <span class="number">92,266</span>
+                <span class="label">Total Clicks</span>
+            </div>
+            <div class="hero-stat">
+                <span class="number">$0.20</span>
+                <span class="label">Cost Per Click</span>
+            </div>
+            <div class="hero-stat">
+                <span class="number">86.1%</span>
+                <span class="label">Engagement Rate</span>
+            </div>
+        </div>
+
+        <!-- Wins Section -->
+        <section class="section wins">
+            <div class="section-header">
+                <div class="section-icon">&#127942;</div>
+                <h2>Campaign Wins</h2>
+            </div>
+            <div class="win-grid">
+                <div class="win-card">
+                    <h3>Exceptional Cost Efficiency</h3>
+                    <p>Achieved an average CPC of $0.20 — significantly below the political advertising benchmark of $0.50-$1.50 per click.</p>
+                    <span class="metric">60-85% below industry avg</span>
+                </div>
+                <div class="win-card">
+                    <h3>Click-Through Rate Dominance</h3>
+                    <p>Campaign CTR of 2.26% is more than double the Facebook/Meta average of 0.9% for political ads.</p>
+                    <span class="metric">2.5x industry average</span>
+                </div>
+                <div class="win-card">
+                    <h3>Massive Reach Achieved</h3>
+                    <p>3.41 million unique page impressions across Facebook, with 4.02 million page media views driving awareness.</p>
+                    <span class="metric">3.41M unique impressions</span>
+                </div>
+                <div class="win-card">
+                    <h3>Strong Audience Growth</h3>
+                    <p>Gained 1,090 new page followers with only 193 unfollows — a net growth of 897 followers (82% retention).</p>
+                    <span class="metric">+897 net followers</span>
+                </div>
+                <div class="win-card">
+                    <h3>Video Content Success</h3>
+                    <p>202,000 video views achieved with 167K from paid promotion and 35K organic — showing content resonates beyond ads.</p>
+                    <span class="metric">202K total views</span>
+                </div>
+                <div class="win-card">
+                    <h3>Message Resonance</h3>
+                    <p>Top posts on property tax elimination achieved CTRs up to 23.78% — proving the core message connects with voters.</p>
+                    <span class="metric">23.78% peak CTR</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Highlights -->
+        <section class="section highlights">
+            <div class="section-header">
+                <div class="section-icon">&#128200;</div>
+                <h2>Performance vs. Benchmarks</h2>
+            </div>
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <span class="big-number">2.26%</span>
+                    <span class="comparison">vs. 0.9% industry avg</span>
+                    <span class="description">Click-Through Rate</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="big-number">$0.20</span>
+                    <span class="comparison">vs. $0.50-$1.50 typical</span>
+                    <span class="description">Cost Per Click</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="big-number">140K</span>
+                    <span class="comparison">86.1% engagement rate</span>
+                    <span class="description">Total Engagements</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="big-number">1,495</span>
+                    <span class="comparison">23h 47m total engagement</span>
+                    <span class="description">Website Sessions</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="big-number">543</span>
+                    <span class="comparison">36% of all traffic</span>
+                    <span class="description">Organic Search Sessions</span>
+                </div>
+                <div class="highlight-card">
+                    <span class="big-number">52</span>
+                    <span class="comparison">~4 posts per week</span>
+                    <span class="description">Total Posts Published</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Content Themes -->
+        <section class="section top-content">
+            <div class="section-header">
+                <div class="section-icon">&#128293;</div>
+                <h2>Top Performing Content Themes</h2>
+            </div>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Content Theme</th>
+                        <th>Impressions</th>
+                        <th>Clicks</th>
+                        <th>CTR</th>
+                        <th>Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="theme">Property Tax Elimination</td>
+                        <td>1,962,099</td>
+                        <td>27,545</td>
+                        <td>1.40%</td>
+                        <td><span class="badge badge-success">Top Performer</span></td>
+                    </tr>
+                    <tr>
+                        <td class="theme">Foreign Land Ownership</td>
+                        <td>1,823,202</td>
+                        <td>22,163</td>
+                        <td>1.22%</td>
+                        <td><span class="badge badge-success">High Volume</span></td>
+                    </tr>
+                    <tr>
+                        <td class="theme">"Time for Oklahoma to LEAD"</td>
+                        <td>83,476</td>
+                        <td>14,991</td>
+                        <td>17.96%</td>
+                        <td><span class="badge badge-success">Best CTR</span></td>
+                    </tr>
+                    <tr>
+                        <td class="theme">Trump Endorsement</td>
+                        <td>29,116</td>
+                        <td>4,152</td>
+                        <td>14.26%</td>
+                        <td><span class="badge badge-info">Strong Engagement</span></td>
+                    </tr>
+                    <tr>
+                        <td class="theme">Walking Neighborhoods</td>
+                        <td>63,420</td>
+                        <td>1,945</td>
+                        <td>3.07%</td>
+                        <td><span class="badge badge-info">Authentic Connection</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Geographic Reach & Channel Mix -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">&#127758;</div>
+                <h2>Geographic Reach & Traffic Sources</h2>
+            </div>
+            <div class="geo-section">
+                <div>
+                    <h3 style="margin-bottom: 15px; color: #333;">Top Oklahoma Markets</h3>
+                    <ul class="geo-list">
+                        <li>
+                            <span class="city">Tulsa, OK</span>
+                            <div class="geo-bar-container">
+                                <div class="geo-bar" style="width: 100%;"></div>
+                            </div>
+                            <span class="count">256</span>
+                        </li>
+                        <li>
+                            <span class="city">Oklahoma City, OK</span>
+                            <div class="geo-bar-container">
+                                <div class="geo-bar" style="width: 62%;"></div>
+                            </div>
+                            <span class="count">158</span>
+                        </li>
+                        <li>
+                            <span class="city">Broken Arrow, OK</span>
+                            <div class="geo-bar-container">
+                                <div class="geo-bar" style="width: 46%;"></div>
+                            </div>
+                            <span class="count">117</span>
+                        </li>
+                        <li>
+                            <span class="city">Edmond, OK</span>
+                            <div class="geo-bar-container">
+                                <div class="geo-bar" style="width: 17%;"></div>
+                            </div>
+                            <span class="count">43</span>
+                        </li>
+                        <li>
+                            <span class="city">Owasso, OK</span>
+                            <div class="geo-bar-container">
+                                <div class="geo-bar" style="width: 11%;"></div>
+                            </div>
+                            <span class="count">29</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; color: #333;">Website Traffic by Channel</h3>
+                    <div class="channel-mix">
+                        <div class="channel-card">
+                            <div class="channel-name">Organic Search</div>
+                            <div class="channel-sessions">543</div>
+                            <div class="channel-percent">36% of traffic</div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-name">Paid Social</div>
+                            <div class="channel-sessions">529</div>
+                            <div class="channel-percent">35% of traffic</div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-name">Direct</div>
+                            <div class="channel-sessions">200</div>
+                            <div class="channel-percent">13% of traffic</div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-name">Organic Social</div>
+                            <div class="channel-sessions">169</div>
+                            <div class="channel-percent">11% of traffic</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; color: #666; font-size: 0.9rem;">
+                        <strong>Key Insight:</strong> Organic search drives 36% of website traffic — SEO investment is paying off. Combined with paid social (35%), digital channels account for 71% of all site visits.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Areas for Consideration -->
+        <section class="section considerations">
+            <div class="section-header">
+                <div class="section-icon">&#128161;</div>
+                <h2>Areas for Consideration</h2>
+            </div>
+            <div class="consideration-list">
+                <div class="consideration-item">
+                    <h3>Instagram Underperforming</h3>
+                    <p>Only 4,838 clicks from Instagram vs. 88,228 from Facebook. Consider reallocating budget or developing Instagram-specific creative to improve performance on this platform.</p>
+                </div>
+                <div class="consideration-item">
+                    <h3>Website Conversion Tracking</h3>
+                    <p>Google Analytics shows 0 key events and 0 purchasers. Implement conversion tracking for email signups, donations, and volunteer registrations to measure true ROI.</p>
+                </div>
+                <div class="consideration-item">
+                    <h3>Expand Geographic Reach</h3>
+                    <p>Strong presence in Tulsa/OKC metro areas but limited reach in rural Oklahoma. Consider targeted campaigns for Norman, Durant, and smaller communities.</p>
+                </div>
+                <div class="consideration-item">
+                    <h3>Organic Social Growth</h3>
+                    <p>Organic social drives only 11% of website traffic (169 sessions). Increase organic posting frequency and community engagement to reduce reliance on paid media.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Box -->
+        <section class="section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">
+            <h2 style="text-align: center; margin-bottom: 25px; font-size: 1.8rem;">Bottom Line</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center;">
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 10px;">&#128176;</div>
+                    <h3 style="color: #38ef7d; margin-bottom: 8px;">Efficient Spending</h3>
+                    <p style="color: #ccd6f6; font-size: 0.95rem;">Every dollar is working harder than industry standard with CPCs 60-85% below benchmarks.</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 10px;">&#127919;</div>
+                    <h3 style="color: #38ef7d; margin-bottom: 8px;">Message-Market Fit</h3>
+                    <p style="color: #ccd6f6; font-size: 0.95rem;">Property tax and land ownership themes are resonating strongly with Oklahoma voters.</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 10px;">&#128640;</div>
+                    <h3 style="color: #38ef7d; margin-bottom: 8px;">Momentum Building</h3>
+                    <p style="color: #ccd6f6; font-size: 0.95rem;">4M+ impressions and growing follower base position the campaign well for the primary push.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Prepared by The Montgomery Group | Report Period: Oct 1, 2025 - Jan 18, 2026</p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">mikeforok.com</p>
+        </footer>
+    </div>
+</body>
+</html>
