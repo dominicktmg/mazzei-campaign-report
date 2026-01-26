@@ -55,7 +55,7 @@
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
@@ -79,6 +79,63 @@
             font-weight: 500;
             color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.02em;
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .toggle-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 12px;
+            padding: 4px;
+            display: inline-flex;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-btn {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .toggle-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .toggle-btn:hover:not(.active) {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .view-label {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Data Views */
+        .data-view {
+            display: none;
+        }
+
+        .data-view.active {
+            display: block;
         }
 
         /* Glass Card */
@@ -304,6 +361,11 @@
             color: #0a84ff;
         }
 
+        .badge-hot {
+            background: rgba(255, 69, 58, 0.15);
+            color: #ff453a;
+        }
+
         /* Geographic Section */
         .geo-section {
             display: grid;
@@ -366,6 +428,11 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             margin-top: 16px;
+        }
+
+        .channel-mix.two-col {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 400px;
         }
 
         .channel-card {
@@ -527,6 +594,11 @@
             .container {
                 padding: 40px 16px;
             }
+
+            .toggle-btn {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -539,291 +611,570 @@
         <header class="header">
             <h1>Mazzei for Governor</h1>
             <p class="subtitle">Campaign Performance Report</p>
-            <span class="date-range">October 1, 2025 — January 25, 2026</span>
+            <span class="date-range" id="date-range">October 1, 2025 — January 25, 2026</span>
         </header>
 
-        <!-- Hero Stats -->
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <span class="number">4.29M</span>
-                <span class="label">Impressions</span>
-                <span class="change">+5% from last week</span>
-            </div>
-            <div class="hero-stat">
-                <span class="number">97,598</span>
-                <span class="label">Clicks</span>
-                <span class="change">+5,332 this week</span>
-            </div>
-            <div class="hero-stat">
-                <span class="number">$0.20</span>
-                <span class="label">Cost Per Click</span>
-                <span class="change">Holding steady</span>
-            </div>
-            <div class="hero-stat">
-                <span class="number">85.5%</span>
-                <span class="label">Engagement</span>
-                <span class="change">150K interactions</span>
+        <!-- Toggle Switch -->
+        <div class="toggle-container">
+            <div>
+                <div class="view-label">View Data For</div>
+                <div class="toggle-wrapper">
+                    <button class="toggle-btn active" data-view="all" onclick="switchView('all')">All Campaigns</button>
+                    <button class="toggle-btn" data-view="primary" onclick="switchView('primary')">Primary Voters</button>
+                </div>
             </div>
         </div>
 
-        <!-- Wins Section -->
-        <section class="glass">
-            <div class="section-header">
-                <span class="section-tag">+</span>
-                <h2>Campaign Wins</h2>
-            </div>
-            <div class="win-grid">
-                <div class="win-card">
-                    <h3>Website Traffic Exploded</h3>
-                    <p>Website sessions surged to 4,958 — a 232% increase from last week. Visitors are spending over 2 days of combined engagement time on the site.</p>
-                    <span class="metric">+232% sessions</span>
-                </div>
-                <div class="win-card">
-                    <h3>Crossed 2,000 Followers</h3>
-                    <p>Facebook page hit 2,025 followers — a key milestone. Net growth of 963 followers with strong retention.</p>
-                    <span class="metric">2,025 followers</span>
-                </div>
-                <div class="win-card">
-                    <h3>Video Views Surging</h3>
-                    <p>236K video views achieved — up 17% from last week. Video content continues to outperform static posts.</p>
-                    <span class="metric">236K views (+17%)</span>
-                </div>
-                <div class="win-card">
-                    <h3>Organic Search Tripled</h3>
-                    <p>Organic search sessions jumped to 1,369 — people are actively searching for Mike Mazzei. SEO investment paying off.</p>
-                    <span class="metric">1,369 organic sessions</span>
-                </div>
-                <div class="win-card">
-                    <h3>CTR Stays Above Benchmark</h3>
-                    <p>Click-through rate at 2.27% — still more than double the industry average of 0.9% for political ads.</p>
-                    <span class="metric">2.5x industry avg</span>
-                </div>
-                <div class="win-card">
-                    <h3>Cost Efficiency Maintained</h3>
-                    <p>Average CPC holding at $0.20 despite scaling — 60-85% below typical political advertising costs.</p>
-                    <span class="metric">$0.20 CPC</span>
-                </div>
-            </div>
-        </section>
+        <!-- ==================== ALL CAMPAIGNS VIEW ==================== -->
+        <div class="data-view active" id="view-all">
 
-        <!-- Performance Highlights -->
-        <section class="glass">
-            <div class="section-header">
-                <span class="section-tag">~</span>
-                <h2>Performance vs. Benchmarks</h2>
-            </div>
-            <div class="highlight-grid">
-                <div class="highlight-card">
-                    <span class="big-number">2.27%</span>
-                    <span class="comparison">vs. 0.9% industry avg</span>
-                    <span class="description">Click-Through Rate</span>
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="number">4.29M</span>
+                    <span class="label">Impressions</span>
+                    <span class="change">+5% from last week</span>
                 </div>
-                <div class="highlight-card">
-                    <span class="big-number">$0.20</span>
-                    <span class="comparison">vs. $0.50-$1.50 typical</span>
-                    <span class="description">Cost Per Click</span>
+                <div class="hero-stat">
+                    <span class="number">97,598</span>
+                    <span class="label">Clicks</span>
+                    <span class="change">+5,332 this week</span>
                 </div>
-                <div class="highlight-card">
-                    <span class="big-number">150K</span>
-                    <span class="comparison">85.5% engagement rate</span>
-                    <span class="description">Total Engagements</span>
+                <div class="hero-stat">
+                    <span class="number">$0.20</span>
+                    <span class="label">Cost Per Click</span>
+                    <span class="change">Holding steady</span>
                 </div>
-                <div class="highlight-card">
-                    <span class="big-number">4,958</span>
-                    <span class="comparison">2d 9h total engagement</span>
-                    <span class="description">Website Sessions</span>
-                </div>
-                <div class="highlight-card">
-                    <span class="big-number">1,369</span>
-                    <span class="comparison">28% of all traffic</span>
-                    <span class="description">Organic Search</span>
-                </div>
-                <div class="highlight-card">
-                    <span class="big-number">56</span>
-                    <span class="comparison">~4 posts per week</span>
-                    <span class="description">Posts Published</span>
+                <div class="hero-stat">
+                    <span class="number">85.5%</span>
+                    <span class="label">Engagement</span>
+                    <span class="change">150K interactions</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Top Content -->
-        <section class="glass">
-            <div class="section-header">
-                <span class="section-tag">*</span>
-                <h2>Top Performing Content</h2>
-            </div>
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th>Content Theme</th>
-                        <th>Impressions</th>
-                        <th>Clicks</th>
-                        <th>CTR</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="theme">Property Tax Elimination</td>
-                        <td>2,067,972</td>
-                        <td>30,913</td>
-                        <td>1.49%</td>
-                        <td><span class="badge badge-success">Top Performer</span></td>
-                    </tr>
-                    <tr>
-                        <td class="theme">Foreign Land Ownership</td>
-                        <td>1,924,866</td>
-                        <td>24,127</td>
-                        <td>1.25%</td>
-                        <td><span class="badge badge-success">High Volume</span></td>
-                    </tr>
-                    <tr>
-                        <td class="theme">"Time for Oklahoma to LEAD"</td>
-                        <td>133,476</td>
-                        <td>22,683</td>
-                        <td>17.0%</td>
-                        <td><span class="badge badge-success">Best CTR</span></td>
-                    </tr>
-                    <tr>
-                        <td class="theme">Broken Arrow City Council</td>
-                        <td>25,274</td>
-                        <td>2,577</td>
-                        <td>10.2%</td>
-                        <td><span class="badge badge-info">New This Week</span></td>
-                    </tr>
-                    <tr>
-                        <td class="theme">Poultry Farmers Meeting</td>
-                        <td>8,434</td>
-                        <td>455</td>
-                        <td>5.4%</td>
-                        <td><span class="badge badge-info">Local Outreach</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Geographic & Channels -->
-        <section class="glass">
-            <div class="section-header">
-                <span class="section-tag">@</span>
-                <h2>Reach & Traffic Sources</h2>
-            </div>
-            <div class="geo-section">
-                <div>
-                    <h3>Top Oklahoma Markets</h3>
-                    <ul class="geo-list">
-                        <li>
-                            <span class="city">Tulsa</span>
-                            <div class="geo-bar-container">
-                                <div class="geo-bar" style="width: 100%;"></div>
-                            </div>
-                            <span class="count">296</span>
-                        </li>
-                        <li>
-                            <span class="city">Oklahoma City</span>
-                            <div class="geo-bar-container">
-                                <div class="geo-bar" style="width: 53%;"></div>
-                            </div>
-                            <span class="count">158</span>
-                        </li>
-                        <li>
-                            <span class="city">Broken Arrow</span>
-                            <div class="geo-bar-container">
-                                <div class="geo-bar" style="width: 40%;"></div>
-                            </div>
-                            <span class="count">117</span>
-                        </li>
-                        <li>
-                            <span class="city">Edmond</span>
-                            <div class="geo-bar-container">
-                                <div class="geo-bar" style="width: 15%;"></div>
-                            </div>
-                            <span class="count">43</span>
-                        </li>
-                        <li>
-                            <span class="city">Norman / Durant</span>
-                            <div class="geo-bar-container">
-                                <div class="geo-bar" style="width: 10%;"></div>
-                            </div>
-                            <span class="count">29</span>
-                        </li>
-                    </ul>
+            <!-- Wins Section -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">+</span>
+                    <h2>Campaign Wins</h2>
                 </div>
-                <div>
-                    <h3>Traffic by Channel</h3>
-                    <div class="channel-mix">
-                        <div class="channel-card">
-                            <div class="channel-name">Paid Social</div>
-                            <div class="channel-sessions">2,619</div>
-                            <div class="channel-percent">53%</div>
-                        </div>
-                        <div class="channel-card">
-                            <div class="channel-name">Organic Search</div>
-                            <div class="channel-sessions">1,369</div>
-                            <div class="channel-percent">28%</div>
-                        </div>
-                        <div class="channel-card">
-                            <div class="channel-name">Direct</div>
-                            <div class="channel-sessions">487</div>
-                            <div class="channel-percent">10%</div>
-                        </div>
-                        <div class="channel-card">
-                            <div class="channel-name">Organic Social</div>
-                            <div class="channel-sessions">328</div>
-                            <div class="channel-percent">7%</div>
+                <div class="win-grid">
+                    <div class="win-card">
+                        <h3>Website Traffic Exploded</h3>
+                        <p>Website sessions surged to 4,958 — a 232% increase from last week. Visitors are spending over 2 days of combined engagement time on the site.</p>
+                        <span class="metric">+232% sessions</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Crossed 2,000 Followers</h3>
+                        <p>Facebook page hit 2,025 followers — a key milestone. Net growth of 963 followers with strong retention.</p>
+                        <span class="metric">2,025 followers</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Video Views Surging</h3>
+                        <p>236K video views achieved — up 17% from last week. Video content continues to outperform static posts.</p>
+                        <span class="metric">236K views (+17%)</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Organic Search Tripled</h3>
+                        <p>Organic search sessions jumped to 1,369 — people are actively searching for Mike Mazzei. SEO investment paying off.</p>
+                        <span class="metric">1,369 organic sessions</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>CTR Stays Above Benchmark</h3>
+                        <p>Click-through rate at 2.27% — still more than double the industry average of 0.9% for political ads.</p>
+                        <span class="metric">2.5x industry avg</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Cost Efficiency Maintained</h3>
+                        <p>Average CPC holding at $0.20 despite scaling — 60-85% below typical political advertising costs.</p>
+                        <span class="metric">$0.20 CPC</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Highlights -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">~</span>
+                    <h2>Performance vs. Benchmarks</h2>
+                </div>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <span class="big-number">2.27%</span>
+                        <span class="comparison">vs. 0.9% industry avg</span>
+                        <span class="description">Click-Through Rate</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">$0.20</span>
+                        <span class="comparison">vs. $0.50-$1.50 typical</span>
+                        <span class="description">Cost Per Click</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">150K</span>
+                        <span class="comparison">85.5% engagement rate</span>
+                        <span class="description">Total Engagements</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">4,958</span>
+                        <span class="comparison">2d 9h total engagement</span>
+                        <span class="description">Website Sessions</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">1,369</span>
+                        <span class="comparison">28% of all traffic</span>
+                        <span class="description">Organic Search</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">56</span>
+                        <span class="comparison">~4 posts per week</span>
+                        <span class="description">Posts Published</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Content -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">*</span>
+                    <h2>Top Performing Content</h2>
+                </div>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Content Theme</th>
+                            <th>Impressions</th>
+                            <th>Clicks</th>
+                            <th>CTR</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="theme">Property Tax Elimination</td>
+                            <td>2,067,972</td>
+                            <td>30,913</td>
+                            <td>1.49%</td>
+                            <td><span class="badge badge-success">Top Performer</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Foreign Land Ownership</td>
+                            <td>1,924,866</td>
+                            <td>24,127</td>
+                            <td>1.25%</td>
+                            <td><span class="badge badge-success">High Volume</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">"Time for Oklahoma to LEAD"</td>
+                            <td>133,476</td>
+                            <td>22,683</td>
+                            <td>17.0%</td>
+                            <td><span class="badge badge-success">Best CTR</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Broken Arrow City Council</td>
+                            <td>25,274</td>
+                            <td>2,577</td>
+                            <td>10.2%</td>
+                            <td><span class="badge badge-info">New This Week</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Poultry Farmers Meeting</td>
+                            <td>8,434</td>
+                            <td>455</td>
+                            <td>5.4%</td>
+                            <td><span class="badge badge-info">Local Outreach</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Geographic & Channels -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">@</span>
+                    <h2>Reach & Traffic Sources</h2>
+                </div>
+                <div class="geo-section">
+                    <div>
+                        <h3>Top Oklahoma Markets</h3>
+                        <ul class="geo-list">
+                            <li>
+                                <span class="city">Tulsa</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 100%;"></div>
+                                </div>
+                                <span class="count">296</span>
+                            </li>
+                            <li>
+                                <span class="city">Oklahoma City</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 53%;"></div>
+                                </div>
+                                <span class="count">158</span>
+                            </li>
+                            <li>
+                                <span class="city">Broken Arrow</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 40%;"></div>
+                                </div>
+                                <span class="count">117</span>
+                            </li>
+                            <li>
+                                <span class="city">Edmond</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 15%;"></div>
+                                </div>
+                                <span class="count">43</span>
+                            </li>
+                            <li>
+                                <span class="city">Norman / Durant</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 10%;"></div>
+                                </div>
+                                <span class="count">29</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Traffic by Channel</h3>
+                        <div class="channel-mix">
+                            <div class="channel-card">
+                                <div class="channel-name">Paid Social</div>
+                                <div class="channel-sessions">2,619</div>
+                                <div class="channel-percent">53%</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="channel-name">Organic Search</div>
+                                <div class="channel-sessions">1,369</div>
+                                <div class="channel-percent">28%</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="channel-name">Direct</div>
+                                <div class="channel-sessions">487</div>
+                                <div class="channel-percent">10%</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="channel-name">Organic Social</div>
+                                <div class="channel-sessions">328</div>
+                                <div class="channel-percent">7%</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Next Steps -->
-        <section class="glass">
-            <div class="section-header">
-                <span class="section-tag">→</span>
-                <h2>Next Phase Strategy</h2>
-            </div>
-            <div class="consideration-list">
-                <div class="consideration-item">
-                    <h3>Capitalize on Search Momentum</h3>
-                    <p>With organic search up 152%, continue SEO efforts and consider Google Ads to capture high-intent "Mike Mazzei" searches.</p>
+            <!-- Next Steps -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">→</span>
+                    <h2>Next Phase Strategy</h2>
                 </div>
-                <div class="consideration-item">
-                    <h3>Expand Local Event Content</h3>
-                    <p>Broken Arrow and poultry farmer posts showing strong engagement — more hyper-local content to deepen community connection.</p>
+                <div class="consideration-list">
+                    <div class="consideration-item">
+                        <h3>Capitalize on Search Momentum</h3>
+                        <p>With organic search up 152%, continue SEO efforts and consider Google Ads to capture high-intent "Mike Mazzei" searches.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Expand Local Event Content</h3>
+                        <p>Broken Arrow and poultry farmer posts showing strong engagement — more hyper-local content to deepen community connection.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Video Production Push</h3>
+                        <p>236K video views and climbing. Increase short-form video output for Reels/Stories to ride the momentum.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Norman & Durant Targeting</h3>
+                        <p>Both markets now appearing in top cities. Develop targeted messaging for these emerging audiences.</p>
+                    </div>
                 </div>
-                <div class="consideration-item">
-                    <h3>Video Production Push</h3>
-                    <p>236K video views and climbing. Increase short-form video output for Reels/Stories to ride the momentum.</p>
-                </div>
-                <div class="consideration-item">
-                    <h3>Norman & Durant Targeting</h3>
-                    <p>Both markets now appearing in top cities. Develop targeted messaging for these emerging audiences.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Bottom Line -->
-        <section class="glass bottom-line">
-            <h2>Bottom Line</h2>
-            <div class="bottom-grid">
-                <div>
-                    <div class="icon">$</div>
-                    <h3>Efficient Scaling</h3>
-                    <p>Grew impressions and clicks while maintaining $0.20 CPC — proving the campaign scales efficiently.</p>
+            <!-- Bottom Line -->
+            <section class="glass bottom-line">
+                <h2>Bottom Line</h2>
+                <div class="bottom-grid">
+                    <div>
+                        <div class="icon">$</div>
+                        <h3>Efficient Scaling</h3>
+                        <p>Grew impressions and clicks while maintaining $0.20 CPC — proving the campaign scales efficiently.</p>
+                    </div>
+                    <div>
+                        <div class="icon">*</div>
+                        <h3>Real Search Interest</h3>
+                        <p>Organic search tripled — Oklahomans are actively looking for Mike Mazzei. Name recognition building.</p>
+                    </div>
+                    <div>
+                        <div class="icon">^</div>
+                        <h3>Accelerating Growth</h3>
+                        <p>Website traffic up 232%, video views up 17%, followers crossed 2K. Momentum is compounding.</p>
+                    </div>
                 </div>
-                <div>
-                    <div class="icon">*</div>
-                    <h3>Real Search Interest</h3>
-                    <p>Organic search tripled — Oklahomans are actively looking for Mike Mazzei. Name recognition building.</p>
+            </section>
+
+        </div>
+
+        <!-- ==================== PRIMARY VOTERS VIEW ==================== -->
+        <div class="data-view" id="view-primary">
+
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="number">2.03M</span>
+                    <span class="label">Impressions</span>
+                    <span class="change">Primary voter list</span>
                 </div>
-                <div>
-                    <div class="icon">^</div>
-                    <h3>Accelerating Growth</h3>
-                    <p>Website traffic up 232%, video views up 17%, followers crossed 2K. Momentum is compounding.</p>
+                <div class="hero-stat">
+                    <span class="number">43,955</span>
+                    <span class="label">Clicks</span>
+                    <span class="change">45% of total clicks</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="number">$0.23</span>
+                    <span class="label">Cost Per Click</span>
+                    <span class="change">Targeted audience</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="number">2.16%</span>
+                    <span class="label">CTR</span>
+                    <span class="change">2.4x industry avg</span>
                 </div>
             </div>
-        </section>
+
+            <!-- Wins Section -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">+</span>
+                    <h2>Primary Voter Wins</h2>
+                </div>
+                <div class="win-grid">
+                    <div class="win-card">
+                        <h3>High-Intent Audience Reached</h3>
+                        <p>2.03 million impressions delivered specifically to registered Republican primary voters — the exact audience that will decide the primary.</p>
+                        <span class="metric">2.03M targeted impressions</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Exceptional Engagement</h3>
+                        <p>"To my fellow conservatives" post hit 24.08% CTR — 1 in 4 primary voters who saw it clicked. Message resonating deeply.</p>
+                        <span class="metric">24.08% peak CTR</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Property Tax Dominates</h3>
+                        <p>25,566 clicks on property tax content from primary voters alone. This is the winning issue with the base.</p>
+                        <span class="metric">25.5K clicks</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Local Content Breakthrough</h3>
+                        <p>Broken Arrow City Council post achieved 9.02% CTR — local issues drive massive engagement with primary voters.</p>
+                        <span class="metric">9.02% CTR</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Cost-Effective Targeting</h3>
+                        <p>Several posts achieving $0.02-$0.05 CPC with primary voters — extraordinarily efficient for targeted political ads.</p>
+                        <span class="metric">$0.02 CPC on top posts</span>
+                    </div>
+                    <div class="win-card">
+                        <h3>Facebook Dominance</h3>
+                        <p>97% of primary voter clicks (42,552) came from Facebook — this audience lives on Facebook, not Instagram.</p>
+                        <span class="metric">97% Facebook</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Highlights -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">~</span>
+                    <h2>Primary Voter Benchmarks</h2>
+                </div>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <span class="big-number">2.16%</span>
+                        <span class="comparison">vs. 0.9% industry avg</span>
+                        <span class="description">Click-Through Rate</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">$0.23</span>
+                        <span class="comparison">vs. $1-$2 for voter files</span>
+                        <span class="description">Cost Per Click</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">43,955</span>
+                        <span class="comparison">45% of all campaign clicks</span>
+                        <span class="description">Primary Voter Clicks</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">24.08%</span>
+                        <span class="comparison">Top performing post</span>
+                        <span class="description">Best CTR Achieved</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">97%</span>
+                        <span class="comparison">vs. 3% Instagram</span>
+                        <span class="description">Facebook Share</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="big-number">6 weeks</span>
+                        <span class="comparison">Dec 14 - Jan 25</span>
+                        <span class="description">Campaign Duration</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Content -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">*</span>
+                    <h2>Top Content with Primary Voters</h2>
+                </div>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Content Theme</th>
+                            <th>Impressions</th>
+                            <th>Clicks</th>
+                            <th>CTR</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="theme">"To my fellow conservatives..."</td>
+                            <td>9,032</td>
+                            <td>2,175</td>
+                            <td>24.08%</td>
+                            <td><span class="badge badge-hot">Viral Hit</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Poultry Farmers Meeting</td>
+                            <td>3,641</td>
+                            <td>529</td>
+                            <td>14.53%</td>
+                            <td><span class="badge badge-success">Local Win</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Broken Arrow City Council</td>
+                            <td>21,311</td>
+                            <td>1,922</td>
+                            <td>9.02%</td>
+                            <td><span class="badge badge-success">Community</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Property Tax (Mazzei)</td>
+                            <td>1,033,312</td>
+                            <td>25,566</td>
+                            <td>2.49%</td>
+                            <td><span class="badge badge-success">Top Volume</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">Foreign Land Ownership</td>
+                            <td>1,009,245</td>
+                            <td>18,389</td>
+                            <td>1.82%</td>
+                            <td><span class="badge badge-info">High Reach</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Platform Split -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">@</span>
+                    <h2>Platform Performance</h2>
+                </div>
+                <div class="geo-section">
+                    <div>
+                        <h3>Clicks by Platform</h3>
+                        <ul class="geo-list">
+                            <li>
+                                <span class="city">Facebook</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 97%;"></div>
+                                </div>
+                                <span class="count">42,552</span>
+                            </li>
+                            <li>
+                                <span class="city">Instagram</span>
+                                <div class="geo-bar-container">
+                                    <div class="geo-bar" style="width: 3%;"></div>
+                                </div>
+                                <span class="count">1,403</span>
+                            </li>
+                        </ul>
+                        <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+                            Primary voters are overwhelmingly on Facebook. Instagram investment should be minimal for this audience segment.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Primary vs. All Audiences</h3>
+                        <div class="channel-mix two-col">
+                            <div class="channel-card">
+                                <div class="channel-name">Primary Voters</div>
+                                <div class="channel-sessions">43,955</div>
+                                <div class="channel-percent">45% of clicks</div>
+                            </div>
+                            <div class="channel-card">
+                                <div class="channel-name">Broad Audience</div>
+                                <div class="channel-sessions">53,643</div>
+                                <div class="channel-percent">55% of clicks</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+                            Nearly half of all engagement is coming from the targeted primary voter list — excellent list performance.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="glass">
+                <div class="section-header">
+                    <span class="section-tag">→</span>
+                    <h2>Primary Voter Strategy</h2>
+                </div>
+                <div class="consideration-list">
+                    <div class="consideration-item">
+                        <h3>Scale "Fellow Conservatives" Messaging</h3>
+                        <p>24% CTR is exceptional — create more content with this direct, values-based tone. Primary voters respond to authenticity.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Double Down on Local Issues</h3>
+                        <p>Broken Arrow and poultry farmer content outperforming broad messaging. Hyper-local = hyper-engaged with this audience.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Shift Budget to Facebook</h3>
+                        <p>97% of primary voter clicks on Facebook. Reallocate Instagram budget to Facebook for this segment.</p>
+                    </div>
+                    <div class="consideration-item">
+                        <h3>Increase Primary List Frequency</h3>
+                        <p>With 2.16% CTR and $0.23 CPC, this audience is highly responsive. Increase touchpoints ahead of primary.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Line -->
+            <section class="glass bottom-line">
+                <h2>Bottom Line</h2>
+                <div class="bottom-grid">
+                    <div>
+                        <div class="icon">*</div>
+                        <h3>Message Resonance</h3>
+                        <p>24% CTR on conservative values content — the base is energized and responding to Mike's message.</p>
+                    </div>
+                    <div>
+                        <div class="icon">@</div>
+                        <h3>Efficient Targeting</h3>
+                        <p>45% of all clicks from primary voters at $0.23 CPC — voter file targeting is working exceptionally well.</p>
+                    </div>
+                    <div>
+                        <div class="icon">^</div>
+                        <h3>Clear Platform Winner</h3>
+                        <p>97% Facebook — primary voters live there. Focus resources where the voters are.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
 
         <!-- Footer -->
         <footer class="footer">
@@ -831,5 +1182,31 @@
             <p style="margin-top: 6px;"><a href="https://mikeforok.com">mikeforok.com</a></p>
         </footer>
     </div>
+
+    <script>
+        function switchView(view) {
+            // Update buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.view === view) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update views
+            document.querySelectorAll('.data-view').forEach(v => {
+                v.classList.remove('active');
+            });
+            document.getElementById('view-' + view).classList.add('active');
+
+            // Update date range
+            const dateRange = document.getElementById('date-range');
+            if (view === 'primary') {
+                dateRange.textContent = 'December 14, 2025 — January 25, 2026';
+            } else {
+                dateRange.textContent = 'October 1, 2025 — January 25, 2026';
+            }
+        }
+    </script>
 </body>
 </html>
