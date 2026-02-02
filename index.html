@@ -52,6 +52,10 @@
             padding: 60px 24px;
         }
 
+        .container.wide {
+            max-width: 1600px;
+        }
+
         /* Header */
         .header {
             text-align: center;
@@ -138,6 +142,43 @@
             display: block;
         }
 
+        /* Side by Side View */
+        .comparison-view {
+            display: none;
+        }
+
+        .comparison-view.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .comparison-column {
+            min-width: 0;
+        }
+
+        .comparison-column .column-header {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(40px);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-column .column-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .comparison-column .column-header .column-date {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         /* Glass Card */
         .glass {
             background: rgba(255, 255, 255, 0.08);
@@ -149,12 +190,21 @@
             margin-bottom: 24px;
         }
 
+        .comparison-view .glass {
+            padding: 24px;
+        }
+
         /* Hero Stats */
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
             margin-bottom: 24px;
+        }
+
+        .comparison-view .hero-stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
         .hero-stat {
@@ -168,6 +218,10 @@
             transition: all 0.3s ease;
         }
 
+        .comparison-view .hero-stat {
+            padding: 20px 16px;
+        }
+
         .hero-stat:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
@@ -179,6 +233,10 @@
             color: #fff;
             display: block;
             letter-spacing: -0.02em;
+        }
+
+        .comparison-view .hero-stat .number {
+            font-size: 1.8rem;
         }
 
         .hero-stat .label {
@@ -204,11 +262,19 @@
             margin-bottom: 24px;
         }
 
+        .comparison-view .section-header {
+            margin-bottom: 16px;
+        }
+
         .section-header h2 {
             font-size: 1.5rem;
             font-weight: 600;
             color: #fff;
             letter-spacing: -0.01em;
+        }
+
+        .comparison-view .section-header h2 {
+            font-size: 1.2rem;
         }
 
         .section-tag {
@@ -230,11 +296,20 @@
             gap: 16px;
         }
 
+        .comparison-view .win-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
         .win-card {
             background: rgba(52, 199, 89, 0.08);
             border: 1px solid rgba(52, 199, 89, 0.2);
             border-radius: 14px;
             padding: 20px;
+        }
+
+        .comparison-view .win-card {
+            padding: 16px;
         }
 
         .win-card h3 {
@@ -244,6 +319,10 @@
             margin-bottom: 8px;
             display: flex;
             align-items: center;
+        }
+
+        .comparison-view .win-card h3 {
+            font-size: 0.9rem;
         }
 
         .win-card h3::before {
@@ -259,6 +338,10 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.5;
+        }
+
+        .comparison-view .win-card p {
+            font-size: 0.85rem;
         }
 
         .win-card .metric {
@@ -280,12 +363,21 @@
             gap: 16px;
         }
 
+        .comparison-view .highlight-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
         .highlight-card {
             text-align: center;
             padding: 24px 16px;
             background: rgba(255, 255, 255, 0.04);
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .comparison-view .highlight-card {
+            padding: 16px 12px;
         }
 
         .highlight-card .big-number {
@@ -296,6 +388,10 @@
             letter-spacing: -0.02em;
         }
 
+        .comparison-view .highlight-card .big-number {
+            font-size: 1.5rem;
+        }
+
         .highlight-card .comparison {
             font-size: 0.8rem;
             color: #34c759;
@@ -303,9 +399,17 @@
             margin: 6px 0;
         }
 
+        .comparison-view .highlight-card .comparison {
+            font-size: 0.75rem;
+        }
+
         .highlight-card .description {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.5);
+        }
+
+        .comparison-view .highlight-card .description {
+            font-size: 0.75rem;
         }
 
         /* Table */
@@ -325,11 +429,21 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .comparison-view .content-table th {
+            padding: 10px 12px;
+            font-size: 0.7rem;
+        }
+
         .content-table td {
             padding: 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.8);
+        }
+
+        .comparison-view .content-table td {
+            padding: 12px;
+            font-size: 0.8rem;
         }
 
         .content-table tr:hover {
@@ -373,6 +487,11 @@
             gap: 32px;
         }
 
+        .comparison-view .geo-section {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
         .geo-section h3 {
             font-size: 1rem;
             font-weight: 600;
@@ -396,6 +515,11 @@
             color: rgba(255, 255, 255, 0.8);
             width: 140px;
             font-size: 0.9rem;
+        }
+
+        .comparison-view .geo-list .city {
+            width: 100px;
+            font-size: 0.8rem;
         }
 
         .geo-list .count {
@@ -435,12 +559,20 @@
             max-width: 400px;
         }
 
+        .comparison-view .channel-mix {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         .channel-card {
             text-align: center;
             padding: 20px 12px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .comparison-view .channel-card {
+            padding: 14px 10px;
         }
 
         .channel-card .channel-name {
@@ -450,10 +582,18 @@
             margin-bottom: 6px;
         }
 
+        .comparison-view .channel-card .channel-name {
+            font-size: 0.75rem;
+        }
+
         .channel-card .channel-sessions {
             font-size: 1.4rem;
             font-weight: 600;
             color: #fff;
+        }
+
+        .comparison-view .channel-card .channel-sessions {
+            font-size: 1.1rem;
         }
 
         .channel-card .channel-percent {
@@ -469,11 +609,20 @@
             gap: 16px;
         }
 
+        .comparison-view .consideration-list {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
         .consideration-item {
             background: rgba(10, 132, 255, 0.08);
             border: 1px solid rgba(10, 132, 255, 0.2);
             border-radius: 14px;
             padding: 20px;
+        }
+
+        .comparison-view .consideration-item {
+            padding: 16px;
         }
 
         .consideration-item h3 {
@@ -483,6 +632,10 @@
             margin-bottom: 8px;
             display: flex;
             align-items: center;
+        }
+
+        .comparison-view .consideration-item h3 {
+            font-size: 0.9rem;
         }
 
         .consideration-item h3::before {
@@ -500,6 +653,10 @@
             line-height: 1.5;
         }
 
+        .comparison-view .consideration-item p {
+            font-size: 0.8rem;
+        }
+
         /* Bottom Line Section */
         .bottom-line {
             background: rgba(255, 255, 255, 0.04);
@@ -514,6 +671,11 @@
             margin-bottom: 32px;
         }
 
+        .comparison-view .bottom-line h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
         .bottom-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -521,9 +683,19 @@
             text-align: center;
         }
 
+        .comparison-view .bottom-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
         .bottom-grid .icon {
             font-size: 2.5rem;
             margin-bottom: 12px;
+        }
+
+        .comparison-view .bottom-grid .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
         }
 
         .bottom-grid h3 {
@@ -537,6 +709,10 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
             line-height: 1.5;
+        }
+
+        .comparison-view .bottom-grid p {
+            font-size: 0.8rem;
         }
 
         /* Footer */
@@ -560,6 +736,37 @@
         }
 
         /* Responsive */
+        @media (max-width: 1400px) {
+            .comparison-view.active {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .comparison-view .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .comparison-view .highlight-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .comparison-view .win-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-view .geo-section {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .comparison-view .consideration-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-view .bottom-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 900px) {
             .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -579,6 +786,14 @@
 
             .header h1 {
                 font-size: 2.2rem;
+            }
+
+            .toggle-wrapper {
+                flex-direction: column;
+            }
+
+            .toggle-btn {
+                width: 100%;
             }
         }
 
@@ -606,12 +821,12 @@
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
-    <div class="container">
+    <div class="container" id="main-container">
         <!-- Header -->
         <header class="header">
             <h1>Mazzei for Governor</h1>
             <p class="subtitle">Campaign Performance Report</p>
-            <span class="date-range" id="date-range">October 1, 2025 — January 25, 2026</span>
+            <span class="date-range" id="date-range">October 1, 2025 — February 1, 2026</span>
         </header>
 
         <!-- Toggle Switch -->
@@ -619,8 +834,9 @@
             <div>
                 <div class="view-label">View Data For</div>
                 <div class="toggle-wrapper">
-                    <button class="toggle-btn active" data-view="all" onclick="switchView('all')">All Campaigns</button>
+                    <button class="toggle-btn active" data-view="all" onclick="switchView('all')">All Time</button>
                     <button class="toggle-btn" data-view="primary" onclick="switchView('primary')">Primary Voters</button>
+                    <button class="toggle-btn" data-view="compare" onclick="switchView('compare')">Compare</button>
                 </div>
             </div>
         </div>
@@ -631,14 +847,14 @@
             <!-- Hero Stats -->
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <span class="number">4.29M</span>
+                    <span class="number">4.50M</span>
                     <span class="label">Impressions</span>
-                    <span class="change">+5% from last week</span>
+                    <span class="change">+5% from last report</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="number">97,598</span>
+                    <span class="number">103K</span>
                     <span class="label">Clicks</span>
-                    <span class="change">+5,332 this week</span>
+                    <span class="change">+5,400 this week</span>
                 </div>
                 <div class="hero-stat">
                     <span class="number">$0.20</span>
@@ -646,9 +862,9 @@
                     <span class="change">Holding steady</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="number">85.5%</span>
+                    <span class="number">84.5%</span>
                     <span class="label">Engagement</span>
-                    <span class="change">150K interactions</span>
+                    <span class="change">162K interactions</span>
                 </div>
             </div>
 
@@ -660,34 +876,34 @@
                 </div>
                 <div class="win-grid">
                     <div class="win-card">
-                        <h3>Website Traffic Exploded</h3>
-                        <p>Website sessions surged to 4,958 — a 232% increase from last week. Visitors are spending over 2 days of combined engagement time on the site.</p>
-                        <span class="metric">+232% sessions</span>
+                        <h3>Website Traffic Surging</h3>
+                        <p>Website sessions hit 7,219 total with 6,455 unique users. Paid social driving 53% of traffic, organic search contributing 30%.</p>
+                        <span class="metric">7,219 sessions</span>
                     </div>
                     <div class="win-card">
-                        <h3>Crossed 2,000 Followers</h3>
-                        <p>Facebook page hit 2,025 followers — a key milestone. Net growth of 963 followers with strong retention.</p>
-                        <span class="metric">2,025 followers</span>
+                        <h3>Crossed 2,100 Followers</h3>
+                        <p>Facebook page hit 2,112 followers with 1,045 net new followers gained. Strong retention with only 214 unfollows.</p>
+                        <span class="metric">2,112 followers</span>
                     </div>
                     <div class="win-card">
-                        <h3>Video Views Surging</h3>
-                        <p>236K video views achieved — up 17% from last week. Video content continues to outperform static posts.</p>
-                        <span class="metric">236K views (+17%)</span>
+                        <h3>Video Views Exploding</h3>
+                        <p>292K video views achieved — video content continues to drive massive engagement with 269K from paid campaigns.</p>
+                        <span class="metric">292K views</span>
                     </div>
                     <div class="win-card">
-                        <h3>Organic Search Tripled</h3>
-                        <p>Organic search sessions jumped to 1,369 — people are actively searching for Mike Mazzei. SEO investment paying off.</p>
-                        <span class="metric">1,369 organic sessions</span>
+                        <h3>Organic Search Growing</h3>
+                        <p>Organic search hit 2,140 sessions — people are actively searching for Mike Mazzei. Google drives 87% of organic traffic.</p>
+                        <span class="metric">2,140 organic sessions</span>
                     </div>
                     <div class="win-card">
-                        <h3>CTR Stays Above Benchmark</h3>
-                        <p>Click-through rate at 2.27% — still more than double the industry average of 0.9% for political ads.</p>
+                        <h3>CTR Above Benchmark</h3>
+                        <p>Click-through rate at 2.28% — more than double the industry average of 0.9% for political ads.</p>
                         <span class="metric">2.5x industry avg</span>
                     </div>
                     <div class="win-card">
-                        <h3>Cost Efficiency Maintained</h3>
-                        <p>Average CPC holding at $0.20 despite scaling — 60-85% below typical political advertising costs.</p>
-                        <span class="metric">$0.20 CPC</span>
+                        <h3>100K Clicks Milestone</h3>
+                        <p>Crossed the 100,000 click milestone with efficient $0.20 CPC — 60-85% below typical political advertising costs.</p>
+                        <span class="metric">103K total clicks</span>
                     </div>
                 </div>
             </section>
@@ -700,7 +916,7 @@
                 </div>
                 <div class="highlight-grid">
                     <div class="highlight-card">
-                        <span class="big-number">2.27%</span>
+                        <span class="big-number">2.28%</span>
                         <span class="comparison">vs. 0.9% industry avg</span>
                         <span class="description">Click-Through Rate</span>
                     </div>
@@ -710,22 +926,22 @@
                         <span class="description">Cost Per Click</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">150K</span>
-                        <span class="comparison">85.5% engagement rate</span>
+                        <span class="big-number">162K</span>
+                        <span class="comparison">84.5% engagement rate</span>
                         <span class="description">Total Engagements</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">4,958</span>
-                        <span class="comparison">2d 9h total engagement</span>
+                        <span class="big-number">7,219</span>
+                        <span class="comparison">3d 22h total engagement</span>
                         <span class="description">Website Sessions</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">1,369</span>
-                        <span class="comparison">28% of all traffic</span>
+                        <span class="big-number">2,140</span>
+                        <span class="comparison">30% of all traffic</span>
                         <span class="description">Organic Search</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">56</span>
+                        <span class="big-number">60</span>
                         <span class="comparison">~4 posts per week</span>
                         <span class="description">Posts Published</span>
                     </div>
@@ -751,38 +967,38 @@
                     <tbody>
                         <tr>
                             <td class="theme">Property Tax Elimination</td>
-                            <td>2,067,972</td>
-                            <td>30,913</td>
-                            <td>1.49%</td>
+                            <td>2,172,642</td>
+                            <td>33,925</td>
+                            <td>1.56%</td>
                             <td><span class="badge badge-success">Top Performer</span></td>
                         </tr>
                         <tr>
                             <td class="theme">Foreign Land Ownership</td>
-                            <td>1,924,866</td>
-                            <td>24,127</td>
-                            <td>1.25%</td>
+                            <td>2,025,273</td>
+                            <td>26,145</td>
+                            <td>1.29%</td>
                             <td><span class="badge badge-success">High Volume</span></td>
                         </tr>
                         <tr>
                             <td class="theme">"Time for Oklahoma to LEAD"</td>
-                            <td>133,476</td>
+                            <td>133,776</td>
                             <td>22,683</td>
-                            <td>17.0%</td>
-                            <td><span class="badge badge-success">Best CTR</span></td>
+                            <td>16.9%</td>
+                            <td><span class="badge badge-hot">Best CTR</span></td>
+                        </tr>
+                        <tr>
+                            <td class="theme">"To my fellow conservatives..."</td>
+                            <td>9,032</td>
+                            <td>2,175</td>
+                            <td>24.08%</td>
+                            <td><span class="badge badge-hot">Viral Hit</span></td>
                         </tr>
                         <tr>
                             <td class="theme">Broken Arrow City Council</td>
-                            <td>25,274</td>
-                            <td>2,577</td>
-                            <td>10.2%</td>
-                            <td><span class="badge badge-info">New This Week</span></td>
-                        </tr>
-                        <tr>
-                            <td class="theme">Poultry Farmers Meeting</td>
-                            <td>8,434</td>
-                            <td>455</td>
-                            <td>5.4%</td>
-                            <td><span class="badge badge-info">Local Outreach</span></td>
+                            <td>29,788</td>
+                            <td>2,484</td>
+                            <td>8.34%</td>
+                            <td><span class="badge badge-info">Local Win</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -803,35 +1019,35 @@
                                 <div class="geo-bar-container">
                                     <div class="geo-bar" style="width: 100%;"></div>
                                 </div>
-                                <span class="count">296</span>
+                                <span class="count">274</span>
                             </li>
                             <li>
                                 <span class="city">Oklahoma City</span>
                                 <div class="geo-bar-container">
-                                    <div class="geo-bar" style="width: 53%;"></div>
+                                    <div class="geo-bar" style="width: 60%;"></div>
                                 </div>
-                                <span class="count">158</span>
+                                <span class="count">164</span>
                             </li>
                             <li>
                                 <span class="city">Broken Arrow</span>
                                 <div class="geo-bar-container">
-                                    <div class="geo-bar" style="width: 40%;"></div>
+                                    <div class="geo-bar" style="width: 47%;"></div>
                                 </div>
-                                <span class="count">117</span>
+                                <span class="count">130</span>
                             </li>
                             <li>
                                 <span class="city">Edmond</span>
                                 <div class="geo-bar-container">
-                                    <div class="geo-bar" style="width: 15%;"></div>
+                                    <div class="geo-bar" style="width: 18%;"></div>
                                 </div>
-                                <span class="count">43</span>
+                                <span class="count">50</span>
                             </li>
                             <li>
-                                <span class="city">Norman / Durant</span>
+                                <span class="city">Norman</span>
                                 <div class="geo-bar-container">
-                                    <div class="geo-bar" style="width: 10%;"></div>
+                                    <div class="geo-bar" style="width: 15%;"></div>
                                 </div>
-                                <span class="count">29</span>
+                                <span class="count">42</span>
                             </li>
                         </ul>
                     </div>
@@ -840,23 +1056,23 @@
                         <div class="channel-mix">
                             <div class="channel-card">
                                 <div class="channel-name">Paid Social</div>
-                                <div class="channel-sessions">2,619</div>
+                                <div class="channel-sessions">3,805</div>
                                 <div class="channel-percent">53%</div>
                             </div>
                             <div class="channel-card">
                                 <div class="channel-name">Organic Search</div>
-                                <div class="channel-sessions">1,369</div>
-                                <div class="channel-percent">28%</div>
+                                <div class="channel-sessions">2,140</div>
+                                <div class="channel-percent">30%</div>
                             </div>
                             <div class="channel-card">
                                 <div class="channel-name">Direct</div>
-                                <div class="channel-sessions">487</div>
-                                <div class="channel-percent">10%</div>
+                                <div class="channel-sessions">679</div>
+                                <div class="channel-percent">9%</div>
                             </div>
                             <div class="channel-card">
                                 <div class="channel-name">Organic Social</div>
-                                <div class="channel-sessions">328</div>
-                                <div class="channel-percent">7%</div>
+                                <div class="channel-sessions">456</div>
+                                <div class="channel-percent">6%</div>
                             </div>
                         </div>
                     </div>
@@ -866,13 +1082,13 @@
             <!-- Next Steps -->
             <section class="glass">
                 <div class="section-header">
-                    <span class="section-tag">→</span>
+                    <span class="section-tag">-></span>
                     <h2>Next Phase Strategy</h2>
                 </div>
                 <div class="consideration-list">
                     <div class="consideration-item">
                         <h3>Capitalize on Search Momentum</h3>
-                        <p>With organic search up 152%, continue SEO efforts and consider Google Ads to capture high-intent "Mike Mazzei" searches.</p>
+                        <p>With organic search at 2,140 sessions (30% of traffic), continue SEO efforts and consider Google Ads to capture high-intent "Mike Mazzei" searches.</p>
                     </div>
                     <div class="consideration-item">
                         <h3>Expand Local Event Content</h3>
@@ -880,7 +1096,7 @@
                     </div>
                     <div class="consideration-item">
                         <h3>Video Production Push</h3>
-                        <p>236K video views and climbing. Increase short-form video output for Reels/Stories to ride the momentum.</p>
+                        <p>292K video views and climbing. Increase short-form video output for Reels/Stories to ride the momentum.</p>
                     </div>
                     <div class="consideration-item">
                         <h3>Norman & Durant Targeting</h3>
@@ -895,18 +1111,18 @@
                 <div class="bottom-grid">
                     <div>
                         <div class="icon">$</div>
-                        <h3>Efficient Scaling</h3>
-                        <p>Grew impressions and clicks while maintaining $0.20 CPC — proving the campaign scales efficiently.</p>
+                        <h3>100K Clicks Achieved</h3>
+                        <p>Crossed the 100,000 click milestone while maintaining $0.20 CPC — proving the campaign scales efficiently.</p>
                     </div>
                     <div>
                         <div class="icon">*</div>
                         <h3>Real Search Interest</h3>
-                        <p>Organic search tripled — Oklahomans are actively looking for Mike Mazzei. Name recognition building.</p>
+                        <p>Organic search at 2,140 sessions — Oklahomans are actively looking for Mike Mazzei. Name recognition building.</p>
                     </div>
                     <div>
                         <div class="icon">^</div>
                         <h3>Accelerating Growth</h3>
-                        <p>Website traffic up 232%, video views up 17%, followers crossed 2K. Momentum is compounding.</p>
+                        <p>Website at 7,219 sessions, video at 292K views, followers at 2,112. Momentum is compounding.</p>
                     </div>
                 </div>
             </section>
@@ -919,14 +1135,14 @@
             <!-- Hero Stats -->
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <span class="number">2.03M</span>
+                    <span class="number">2.24M</span>
                     <span class="label">Impressions</span>
                     <span class="change">Primary voter list</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="number">43,955</span>
+                    <span class="number">48,985</span>
                     <span class="label">Clicks</span>
-                    <span class="change">45% of total clicks</span>
+                    <span class="change">47% of total clicks</span>
                 </div>
                 <div class="hero-stat">
                     <span class="number">$0.23</span>
@@ -934,7 +1150,7 @@
                     <span class="change">Targeted audience</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="number">2.16%</span>
+                    <span class="number">2.19%</span>
                     <span class="label">CTR</span>
                     <span class="change">2.4x industry avg</span>
                 </div>
@@ -949,8 +1165,8 @@
                 <div class="win-grid">
                     <div class="win-card">
                         <h3>High-Intent Audience Reached</h3>
-                        <p>2.03 million impressions delivered specifically to registered Republican primary voters — the exact audience that will decide the primary.</p>
-                        <span class="metric">2.03M targeted impressions</span>
+                        <p>2.24 million impressions delivered specifically to registered Republican primary voters — the exact audience that will decide the primary.</p>
+                        <span class="metric">2.24M targeted impressions</span>
                     </div>
                     <div class="win-card">
                         <h3>Exceptional Engagement</h3>
@@ -959,13 +1175,13 @@
                     </div>
                     <div class="win-card">
                         <h3>Property Tax Dominates</h3>
-                        <p>25,566 clicks on property tax content from primary voters alone. This is the winning issue with the base.</p>
-                        <span class="metric">25.5K clicks</span>
+                        <p>28,578 clicks on property tax content from primary voters alone. This is the winning issue with the base.</p>
+                        <span class="metric">28.5K clicks</span>
                     </div>
                     <div class="win-card">
                         <h3>Local Content Breakthrough</h3>
-                        <p>Broken Arrow City Council post achieved 9.02% CTR — local issues drive massive engagement with primary voters.</p>
-                        <span class="metric">9.02% CTR</span>
+                        <p>Broken Arrow City Council post achieved 8.34% CTR — local issues drive massive engagement with primary voters.</p>
+                        <span class="metric">8.34% CTR</span>
                     </div>
                     <div class="win-card">
                         <h3>Cost-Effective Targeting</h3>
@@ -974,7 +1190,7 @@
                     </div>
                     <div class="win-card">
                         <h3>Facebook Dominance</h3>
-                        <p>97% of primary voter clicks (42,552) came from Facebook — this audience lives on Facebook, not Instagram.</p>
+                        <p>97% of primary voter clicks (47,507) came from Facebook — this audience lives on Facebook, not Instagram.</p>
                         <span class="metric">97% Facebook</span>
                     </div>
                 </div>
@@ -988,7 +1204,7 @@
                 </div>
                 <div class="highlight-grid">
                     <div class="highlight-card">
-                        <span class="big-number">2.16%</span>
+                        <span class="big-number">2.19%</span>
                         <span class="comparison">vs. 0.9% industry avg</span>
                         <span class="description">Click-Through Rate</span>
                     </div>
@@ -998,8 +1214,8 @@
                         <span class="description">Cost Per Click</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">43,955</span>
-                        <span class="comparison">45% of all campaign clicks</span>
+                        <span class="big-number">48,985</span>
+                        <span class="comparison">47% of all campaign clicks</span>
                         <span class="description">Primary Voter Clicks</span>
                     </div>
                     <div class="highlight-card">
@@ -1013,8 +1229,8 @@
                         <span class="description">Facebook Share</span>
                     </div>
                     <div class="highlight-card">
-                        <span class="big-number">6 weeks</span>
-                        <span class="comparison">Dec 14 - Jan 25</span>
+                        <span class="big-number">7 weeks</span>
+                        <span class="comparison">Dec 14 - Feb 1</span>
                         <span class="description">Campaign Duration</span>
                     </div>
                 </div>
@@ -1046,30 +1262,30 @@
                         </tr>
                         <tr>
                             <td class="theme">Poultry Farmers Meeting</td>
-                            <td>3,641</td>
-                            <td>529</td>
-                            <td>14.53%</td>
+                            <td>7,395</td>
+                            <td>937</td>
+                            <td>12.67%</td>
                             <td><span class="badge badge-success">Local Win</span></td>
                         </tr>
                         <tr>
                             <td class="theme">Broken Arrow City Council</td>
-                            <td>21,311</td>
-                            <td>1,922</td>
-                            <td>9.02%</td>
+                            <td>29,788</td>
+                            <td>2,484</td>
+                            <td>8.34%</td>
                             <td><span class="badge badge-success">Community</span></td>
                         </tr>
                         <tr>
                             <td class="theme">Property Tax (Mazzei)</td>
-                            <td>1,033,312</td>
-                            <td>25,566</td>
-                            <td>2.49%</td>
+                            <td>1,129,982</td>
+                            <td>28,578</td>
+                            <td>2.53%</td>
                             <td><span class="badge badge-success">Top Volume</span></td>
                         </tr>
                         <tr>
                             <td class="theme">Foreign Land Ownership</td>
-                            <td>1,009,245</td>
-                            <td>18,389</td>
-                            <td>1.82%</td>
+                            <td>1,109,551</td>
+                            <td>20,407</td>
+                            <td>1.84%</td>
                             <td><span class="badge badge-info">High Reach</span></td>
                         </tr>
                     </tbody>
@@ -1091,14 +1307,14 @@
                                 <div class="geo-bar-container">
                                     <div class="geo-bar" style="width: 97%;"></div>
                                 </div>
-                                <span class="count">42,552</span>
+                                <span class="count">47,507</span>
                             </li>
                             <li>
                                 <span class="city">Instagram</span>
                                 <div class="geo-bar-container">
                                     <div class="geo-bar" style="width: 3%;"></div>
                                 </div>
-                                <span class="count">1,403</span>
+                                <span class="count">1,478</span>
                             </li>
                         </ul>
                         <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
@@ -1110,13 +1326,13 @@
                         <div class="channel-mix two-col">
                             <div class="channel-card">
                                 <div class="channel-name">Primary Voters</div>
-                                <div class="channel-sessions">43,955</div>
-                                <div class="channel-percent">45% of clicks</div>
+                                <div class="channel-sessions">48,985</div>
+                                <div class="channel-percent">47% of clicks</div>
                             </div>
                             <div class="channel-card">
                                 <div class="channel-name">Broad Audience</div>
-                                <div class="channel-sessions">53,643</div>
-                                <div class="channel-percent">55% of clicks</div>
+                                <div class="channel-sessions">54,015</div>
+                                <div class="channel-percent">53% of clicks</div>
                             </div>
                         </div>
                         <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
@@ -1129,7 +1345,7 @@
             <!-- Next Steps -->
             <section class="glass">
                 <div class="section-header">
-                    <span class="section-tag">→</span>
+                    <span class="section-tag">-></span>
                     <h2>Primary Voter Strategy</h2>
                 </div>
                 <div class="consideration-list">
@@ -1147,7 +1363,7 @@
                     </div>
                     <div class="consideration-item">
                         <h3>Increase Primary List Frequency</h3>
-                        <p>With 2.16% CTR and $0.23 CPC, this audience is highly responsive. Increase touchpoints ahead of primary.</p>
+                        <p>With 2.19% CTR and $0.23 CPC, this audience is highly responsive. Increase touchpoints ahead of primary.</p>
                     </div>
                 </div>
             </section>
@@ -1164,7 +1380,7 @@
                     <div>
                         <div class="icon">@</div>
                         <h3>Efficient Targeting</h3>
-                        <p>45% of all clicks from primary voters at $0.23 CPC — voter file targeting is working exceptionally well.</p>
+                        <p>47% of all clicks from primary voters at $0.23 CPC — voter file targeting is working exceptionally well.</p>
                     </div>
                     <div>
                         <div class="icon">^</div>
@@ -1173,6 +1389,289 @@
                     </div>
                 </div>
             </section>
+
+        </div>
+
+        <!-- ==================== COMPARISON VIEW ==================== -->
+        <div class="comparison-view" id="view-compare">
+
+            <!-- All Time Column -->
+            <div class="comparison-column">
+                <div class="column-header">
+                    <h3>All Time</h3>
+                    <span class="column-date">October 1, 2025 — February 1, 2026</span>
+                </div>
+
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">4.50M</span>
+                        <span class="label">Impressions</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">103K</span>
+                        <span class="label">Clicks</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">$0.20</span>
+                        <span class="label">Cost Per Click</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">2.28%</span>
+                        <span class="label">CTR</span>
+                    </div>
+                </div>
+
+                <!-- Highlights -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">~</span>
+                        <h2>Key Metrics</h2>
+                    </div>
+                    <div class="highlight-grid">
+                        <div class="highlight-card">
+                            <span class="big-number">7,219</span>
+                            <span class="comparison">Website Sessions</span>
+                            <span class="description">Total Traffic</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">2,112</span>
+                            <span class="comparison">+1,045 growth</span>
+                            <span class="description">Page Followers</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">292K</span>
+                            <span class="comparison">269K paid</span>
+                            <span class="description">Video Views</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">162K</span>
+                            <span class="comparison">84.5% rate</span>
+                            <span class="description">Engagements</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Top Content -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">*</span>
+                        <h2>Top Content</h2>
+                    </div>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Content</th>
+                                <th>Clicks</th>
+                                <th>CTR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="theme">Property Tax</td>
+                                <td>33,925</td>
+                                <td>1.56%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">Foreign Land</td>
+                                <td>26,145</td>
+                                <td>1.29%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">"Time to LEAD"</td>
+                                <td>22,683</td>
+                                <td>16.9%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">"Conservatives"</td>
+                                <td>2,175</td>
+                                <td>24.08%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Platform -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">@</span>
+                        <h2>Platform Split</h2>
+                    </div>
+                    <div class="channel-mix">
+                        <div class="channel-card">
+                            <div class="channel-name">Facebook</div>
+                            <div class="channel-sessions">98,446</div>
+                            <div class="channel-percent">96%</div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-name">Instagram</div>
+                            <div class="channel-sessions">4,182</div>
+                            <div class="channel-percent">4%</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bottom Line -->
+                <section class="glass bottom-line">
+                    <h2>Summary</h2>
+                    <div class="bottom-grid">
+                        <div>
+                            <div class="icon">$</div>
+                            <h3>100K Clicks</h3>
+                            <p>Milestone hit at $0.20 CPC</p>
+                        </div>
+                        <div>
+                            <div class="icon">*</div>
+                            <h3>2,140 Organic</h3>
+                            <p>30% of traffic from search</p>
+                        </div>
+                        <div>
+                            <div class="icon">^</div>
+                            <h3>292K Videos</h3>
+                            <p>Video driving engagement</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Primary Voters Column -->
+            <div class="comparison-column">
+                <div class="column-header">
+                    <h3>Primary Voters Only</h3>
+                    <span class="column-date">December 14, 2025 — February 1, 2026</span>
+                </div>
+
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">2.24M</span>
+                        <span class="label">Impressions</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">48,985</span>
+                        <span class="label">Clicks</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">$0.23</span>
+                        <span class="label">Cost Per Click</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">2.19%</span>
+                        <span class="label">CTR</span>
+                    </div>
+                </div>
+
+                <!-- Highlights -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">~</span>
+                        <h2>Key Metrics</h2>
+                    </div>
+                    <div class="highlight-grid">
+                        <div class="highlight-card">
+                            <span class="big-number">47%</span>
+                            <span class="comparison">of all clicks</span>
+                            <span class="description">Share of Total</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">24.08%</span>
+                            <span class="comparison">Best post CTR</span>
+                            <span class="description">Peak Performance</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">97%</span>
+                            <span class="comparison">Facebook</span>
+                            <span class="description">Platform Focus</span>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="big-number">7 wks</span>
+                            <span class="comparison">Dec 14 - Feb 1</span>
+                            <span class="description">Duration</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Top Content -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">*</span>
+                        <h2>Top Content</h2>
+                    </div>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Content</th>
+                                <th>Clicks</th>
+                                <th>CTR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="theme">Property Tax</td>
+                                <td>28,578</td>
+                                <td>2.53%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">Foreign Land</td>
+                                <td>20,407</td>
+                                <td>1.84%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">"Conservatives"</td>
+                                <td>2,175</td>
+                                <td>24.08%</td>
+                            </tr>
+                            <tr>
+                                <td class="theme">Poultry Farmers</td>
+                                <td>937</td>
+                                <td>12.67%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Platform -->
+                <section class="glass">
+                    <div class="section-header">
+                        <span class="section-tag">@</span>
+                        <h2>Platform Split</h2>
+                    </div>
+                    <div class="channel-mix">
+                        <div class="channel-card">
+                            <div class="channel-name">Facebook</div>
+                            <div class="channel-sessions">47,507</div>
+                            <div class="channel-percent">97%</div>
+                        </div>
+                        <div class="channel-card">
+                            <div class="channel-name">Instagram</div>
+                            <div class="channel-sessions">1,478</div>
+                            <div class="channel-percent">3%</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bottom Line -->
+                <section class="glass bottom-line">
+                    <h2>Summary</h2>
+                    <div class="bottom-grid">
+                        <div>
+                            <div class="icon">*</div>
+                            <h3>24% CTR Peak</h3>
+                            <p>Conservative message resonates</p>
+                        </div>
+                        <div>
+                            <div class="icon">@</div>
+                            <h3>47% of Clicks</h3>
+                            <p>Voter file performing well</p>
+                        </div>
+                        <div>
+                            <div class="icon">^</div>
+                            <h3>97% Facebook</h3>
+                            <p>Primary voters live there</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
         </div>
 
@@ -1193,18 +1692,29 @@
                 }
             });
 
-            // Update views
+            // Hide all views
             document.querySelectorAll('.data-view').forEach(v => {
                 v.classList.remove('active');
             });
-            document.getElementById('view-' + view).classList.add('active');
+            document.getElementById('view-compare').classList.remove('active');
+
+            // Show selected view
+            if (view === 'compare') {
+                document.getElementById('view-compare').classList.add('active');
+                document.getElementById('main-container').classList.add('wide');
+            } else {
+                document.getElementById('view-' + view).classList.add('active');
+                document.getElementById('main-container').classList.remove('wide');
+            }
 
             // Update date range
             const dateRange = document.getElementById('date-range');
             if (view === 'primary') {
-                dateRange.textContent = 'December 14, 2025 — January 25, 2026';
+                dateRange.textContent = 'December 14, 2025 — February 1, 2026';
+            } else if (view === 'compare') {
+                dateRange.textContent = 'Side-by-Side Comparison';
             } else {
-                dateRange.textContent = 'October 1, 2025 — January 25, 2026';
+                dateRange.textContent = 'October 1, 2025 — February 1, 2026';
             }
         }
     </script>
